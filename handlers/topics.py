@@ -36,9 +36,25 @@ class TopicCreateHandler (BaseHandler):
 
 class TopicDetails(BaseHandler):
     def get(self, topic_id):
+
+
         topic = Topic.get_by_id(int(topic_id))
         comments = Comment.query(Comment.topic_id == topic.key.id(), Comment.deleted == False).order(Comment.created).fetch()
 
         params = {"topic": topic,"comments":comments}
 
         return self.render_template("topic_details.html", params=params)
+
+class TopicDelete(BaseHandler):
+    def post(self, topic_id):
+
+        topic = Topic.get_by_id(int(topic_id))
+        user = users.get_current_user()
+
+        if topic.author_email == user.email() or users.is_current_user_admin():
+            topic.deleted=True
+            topic.put()
+
+
+        params = {"topic":topic, "user":user}
+        return self.redirect_to("main-page",params=params)

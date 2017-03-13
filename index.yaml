@@ -13,5 +13,15 @@ indexes:
 - kind: Comment
   properties:
   - name: deleted
+  - name: topic_title
+
+- kind: Comment
+  properties:
+  - name: deleted
+  - name: created
+
+- kind: Comment
+  properties:
+  - name: deleted
   - name: topic_id
   - name: created

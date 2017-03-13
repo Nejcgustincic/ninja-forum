@@ -10,11 +10,18 @@
             </div>
             <div class="panel-body"><p><strong>Author:</strong> {{topic.author_email}} ({{topic.created.strftime("%d.%m.%Y at %H:%M")}})</p>
                 <p>{{ topic.content}}</p>
+               {% if user %}
+                   {% if topic.author_email == user.email() or user.admin %}
+                    <form action="/topic/{{topic.key.id()}}/delete" method="post">
+                    <button class="btn btn-danger">Delete Topic</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
-
         </div>
     </div>
+</div>
 
 
 <!--comment list-->
@@ -27,6 +34,13 @@
               </div>
               <div class="panel-body">
                 <p>{{ comment.content }}</p>
+                  {% if user %}
+                    {% if user.email() == comment.author_email or user.admin %}
+                    <form action="/comment/{{comment.key.id()}}/delete" method="post">
+                        <button class="btn btn-danger">Delete comment</button>
+                    </form>
+                    {% endif %}
+                  {% endif %}
               </div>
             </div>
         </div>

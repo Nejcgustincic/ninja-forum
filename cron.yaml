@@ -1,0 +1,8 @@
+cron:
+- description: Delete topics older than 30 days
+  url: /cron/delete-topics
+  schedule: every monday 15:00
+
+- description: Send email to subscribers with new topics
+  url: /cron/mailing
+  schedule: every day 9:00

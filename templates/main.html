@@ -3,8 +3,19 @@
 {% block content%}
     <div class="jumbotron">
   <h1>Welcome to Ninja tech forum</h1>
-  <p>...</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        <p>You can subscribe to hottest topics daily</p>
+        <div class="row">
+            <form action="/mailing" method="post">
+                  <label>Name</label>
+                  <input name="name" required>
+                  <label>email</label>
+                  <input name="email" required>
+                  <button class="btn btn-info" type="submit">Subscribe to new topics daily</button>
+
+
+            </form>
+         </div>
+
 </div>
 
 

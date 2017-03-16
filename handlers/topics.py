@@ -52,8 +52,7 @@ class TopicDelete(BaseHandler):
         user = users.get_current_user()
 
         if topic.author_email == user.email() or users.is_current_user_admin():
-            topic.deleted=True
-            topic.put()
+            Topic.delete(topic=topic)
 
 
         params = {"topic":topic, "user":user}
